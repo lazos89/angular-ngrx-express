@@ -7,7 +7,6 @@ import { AppEffectsModules } from "./app-effects";
 import { metaReducers, appReducers } from "./reducer";
 
 @NgModule({
-  declarations: [],
   imports: [
     StoreModule.forRoot(appReducers, {
       metaReducers,

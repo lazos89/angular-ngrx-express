@@ -1,29 +1,26 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
-import { of } from "rxjs";
+import { of, from, noop } from "rxjs";
 import { switchMap, map, catchError, tap } from "rxjs/operators";
-import { AuthActions } from "./action-types";
+import * as AuthActions from "./auth.actions";
 import { AuthService } from "../../core/services/auth.service";
+import { Store } from "@ngrx/store";
+import * as fromRoot from "@root-store/reducer";
 
-Injectable();
+@Injectable()
 export class AuthEffects {
-  login$ = createEffect(
-    () =>
-      this.actions$.pipe(
-        ofType(AuthActions.login),
-        switchMap(action =>
-          this.authService.login(action.credentials).pipe(
-            tap(user =>
-              localStorage.setItem("user", JSON.stringify(user.email))
-            ),
-            map(user => AuthActions.loginSuccess({ email: user.email })),
-            catchError(error => of(AuthActions.loginFailure({ error })))
-          )
+  login$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(AuthActions.login),
+      switchMap(action =>
+        this.authService.login(action.credentials).pipe(
+          // tap(user => localStorage.setItem("user", JSON.stringify(user.email))),
+          map(user => AuthActions.loginSuccess({ email: user.email })),
+          catchError(error => of(AuthActions.loginFailure({ error })))
         )
-      ),
-    { dispatch: false }
+      )
+    )
   );
-
   // logout$ = createEffect(
   //   () =>
   //     this.actions$.pipe(
@@ -40,6 +37,9 @@ export class AuthEffects {
   //     ),
   //   { dispatch: false }
   // );
-
-  constructor(private actions$: Actions, private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private actions$: Actions
+  ) // private store: Store<fromRoot.AppState>
+  {}
 }

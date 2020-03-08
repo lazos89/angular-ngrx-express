@@ -1,17 +1,19 @@
-<mat-toolbar color="primary">
-  <!-- <button class="menu-button" mat-icon-button (click)="start.open('mouse')">
+<div class="mat-typography app-frame mat-app-background">
+  <mat-toolbar color="primary">
+    <!-- <button class="menu-button" mat-icon-button (click)="start.open('mouse')">
     <mat-icon>menu</mat-icon>
   </button> -->
-  <button class="menu-button" mat-icon-button>
-    <mat-icon>menu</mat-icon>
-  </button>
-</mat-toolbar>
-<!--
+    <button class="menu-button" mat-icon-button>
+      <mat-icon>menu</mat-icon>
+    </button>
+  </mat-toolbar>
+  <!--
 <div class="spinner-container" *ngIf="loading">
   <mat-spinner></mat-spinner>
 </div> -->
-<div class="spinner-container">
-  <mat-spinner></mat-spinner>
-</div>
+  <div class="spinner-container">
+    <mat-spinner></mat-spinner>
+  </div>
 
-<router-outlet></router-outlet>
+  <router-outlet></router-outlet>
+</div>
