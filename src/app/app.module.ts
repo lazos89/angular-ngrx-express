@@ -6,6 +6,8 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { AuthModule } from "./auth/auth.module";
 import { MaterialModule } from "./material/material.module";
+import { EffectsModule } from '@ngrx/effects';
+import { AppEffects } from './app.effects';
 
 @NgModule({
   declarations: [AppComponent],
@@ -15,7 +17,8 @@ import { MaterialModule } from "./material/material.module";
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MaterialModule,
-    AuthModule
+    AuthModule,
+    EffectsModule.forRoot([AppEffects])
   ],
   providers: [],
   bootstrap: [AppComponent]
