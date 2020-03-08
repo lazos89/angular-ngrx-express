@@ -6,6 +6,7 @@ import * as AuthActions from "./auth.actions";
 import { AuthService } from "../../core/services/auth.service";
 import { Store } from "@ngrx/store";
 import * as fromRoot from "@root-store/reducer";
+import { Router } from "@angular/router";
 
 @Injectable()
 export class AuthEffects {
@@ -14,8 +15,9 @@ export class AuthEffects {
       ofType(AuthActions.login),
       switchMap(action =>
         this.authService.login(action.credentials).pipe(
-          // tap(user => localStorage.setItem("user", JSON.stringify(user.email))),
-          map(user => AuthActions.loginSuccess({ email: user.email })),
+          tap(user => localStorage.setItem("user", JSON.stringify(user.email))),
+          tap(() => this.router.navigate(["home"])),
+          map(user => AuthActions.loginSuccess({ user })),
           catchError(error => of(AuthActions.loginFailure({ error })))
         )
       )
@@ -39,7 +41,7 @@ export class AuthEffects {
   // );
   constructor(
     private authService: AuthService,
-    private actions$: Actions
-  ) // private store: Store<fromRoot.AppState>
-  {}
+    private actions$: Actions,
+    private router: Router
+  ) {}
 }
