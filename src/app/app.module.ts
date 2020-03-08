@@ -8,6 +8,7 @@ import { AuthModule } from "./auth/auth.module";
 import { MaterialModule } from "./material/material.module";
 import { EffectsModule } from '@ngrx/effects';
 import { AppEffects } from './app.effects';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,7 +19,8 @@ import { AppEffects } from './app.effects';
     BrowserAnimationsModule,
     MaterialModule,
     AuthModule,
-    EffectsModule.forRoot([AppEffects])
+    EffectsModule.forRoot([AppEffects]),
+    StoreRouterConnectingModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

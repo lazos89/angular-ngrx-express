@@ -23,17 +23,23 @@ export class AuthEffects {
       ),
     { dispatch: false }
   );
-  // login$ = createEffect(() => {
-  //   return this.actions$.pipe(
-  //     ofType(AuthAction.login),
-  //     switchMap(() =>
-  //       apiSource.pipe(
-  //         map(data => AuthActions.actionSuccess({ data })),
-  //         catchError(error => of(AuthAction.actionFailure({ error })))
+
+  // logout$ = createEffect(
+  //   () =>
+  //     this.actions$.pipe(
+  //       ofType(AuthActions.login),
+  //       switchMap(action =>
+  //         this.authService.login(action.credentials).pipe(
+  //           tap(user =>
+  //             localStorage.setItem("user", JSON.stringify(user.email))
+  //           ),
+  //           map(user => AuthActions.loginSuccess({ email: user.email })),
+  //           catchError(error => of(AuthActions.loginFailure({ error })))
+  //         )
   //       )
-  //     )
-  //   );
-  // });
+  //     ),
+  //   { dispatch: false }
+  // );
 
   constructor(private actions$: Actions, private authService: AuthService) {}
 }
