@@ -1,4 +1,4 @@
-import { authLoadingSelector } from "./auth/store/auth.selectors";
+import { authLoadingSelector } from "./auth/store";
 import { Component, OnInit } from "@angular/core";
 import { Observable } from "rxjs";
 import * as fromRoot from "@root-store/reducer";

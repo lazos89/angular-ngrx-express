@@ -4,6 +4,7 @@ import { Application } from "express";
 import * as compression from "compression"; // compresses requests
 import * as bodyParser from "body-parser";
 import { loginUser } from "./routes/auth";
+import { getData } from "./routes/data";
 // Controllers (route handlers)
 
 // API keys and Passport configuration// Create Express server
@@ -17,12 +18,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.route("/api/login").post(loginUser);
 
-// app.route("/api/courses").get(getAllCourses);
-// app.route("/api/course").post(createCourse);
-// app.route("/api/course/:id").put(saveCourse);
-// app.route("/api/course/:id").delete(deleteCourse);
-// app.route("/api/courses/:courseUrl").get(getCourseByUrl);
-// app.route("/api/lessons").get(searchLessons);
+app.route("/api/data").get(getData);
 
 app.get("/", (req, res) => {
   res.send("angular ngrx  express example");

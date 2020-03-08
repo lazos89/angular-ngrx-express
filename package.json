@@ -25,6 +25,7 @@
     "@angular/router": "~9.0.5",
     "@ngrx/effects": "^8.6.0",
     "@ngrx/router-store": "^8.6.0",
+    "@ngrx/schematics": "^8.6.0",
     "@ngrx/store": "^8.6.0",
     "@ngrx/store-devtools": "^8.6.0",
     "errorhandler": "^1.5.1",
