@@ -10,10 +10,11 @@ import { User } from "../models/user.model";
 export class AuthService {
   constructor(private http: HttpClient) {}
 
-  // login(email:string, password:string): Observable<User> {
-  //     return this.http.post<User>('/api/login', {email,password});
-  // }
   login(credentials: LoginCredentials): Observable<User> {
-    return this.http.post<User>("/api/login", credentials);
+    const creds = { email: credentials.email, password: credentials.password };
+    return this.http.post<User>("/api/login", {
+      email: creds.email,
+      password: creds.password
+    });
   }
 }
