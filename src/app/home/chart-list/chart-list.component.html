@@ -1,0 +1,4 @@
+<div *ngFor="let sensor of dataNames$ | async">
+  <div style="height: 20px;"></div>
+  <app-chart [data]="(data$ | async)[sensor]"></app-chart>
+</div>

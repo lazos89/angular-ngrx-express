@@ -9,6 +9,6 @@ export class DataService {
   constructor(private http: HttpClient) {}
 
   loadDatas() {
-    return this.http.post<Data>("/api/data", {});
+    return this.http.get<Data>("/api/data");
   }
 }

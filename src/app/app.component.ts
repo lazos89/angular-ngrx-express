@@ -3,6 +3,7 @@ import { Component, OnInit } from "@angular/core";
 import { Observable } from "rxjs";
 import * as fromRoot from "@root-store/reducer";
 import { Store, select } from "@ngrx/store";
+import { isLoggedIn } from "./auth/store/auth.selectors";
 import {
   Router,
   NavigationStart,
@@ -19,15 +20,19 @@ import {
 export class AppComponent implements OnInit {
   title = "angular-ngrx-express";
   loading = false;
+  isLoggedIn$: Observable<boolean>;
   // logginIn: Observable<boolean>;,
   constructor(
     private router: Router,
     private store$: Store<fromRoot.AppState>
   ) {
+    this.isLoggedIn$ = store$.pipe(select(isLoggedIn));
     store$
       .pipe(select(authLoadingSelector))
       .subscribe(loading => (this.loading = loading));
   }
+
+  onSignOut() {}
   ngOnInit() {
     this.router.events.subscribe(event => {
       switch (true) {

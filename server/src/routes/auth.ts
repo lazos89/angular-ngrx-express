@@ -14,7 +14,7 @@ export function loginUser(req: Request, res: Response) {
     } else {
       res.sendStatus(403);
     }
-  }, 2000);
+  }, 500);
 }
 
 function authenticate(email: string, password: string) {

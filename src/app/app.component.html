@@ -1,18 +1,30 @@
 <div class="mat-typography app-frame mat-app-background">
   <mat-toolbar color="primary">
-    <!-- <button class="menu-button" mat-icon-button (click)="start.open('mouse')">
-    <mat-icon>menu</mat-icon>
-  </button> -->
-    <button class="menu-button" mat-icon-button>
-      <mat-icon>menu</mat-icon>
+    <button mat-button routerLink="/">
+      Angular ngrx Example
     </button>
+    <div fxFlex fxLayout fxLayoutAlign="end" fxShow="false" fxShow.gt-sm>
+      <button
+        *ngIf="this.isLoggedIn$ | async"
+        mat-icon-button
+        [matMenuTriggerFor]="menu"
+        aria-label="Example icon-button with a menu"
+      >
+        <mat-icon>account_circle</mat-icon>
+      </button>
+    </div>
+    <div fxFlex fxLayout fxLayoutAlign="end" fxHide="false" fxHide.gt-sm>
+      <button mat-button [mat-menu-trigger-for]="menu">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </div>
   </mat-toolbar>
-  <!--
-<div class="spinner-container" *ngIf="loading">
-  <mat-spinner></mat-spinner>
-</div> -->
-  <div class="spinner-container" *ngIf="loading">
-    <mat-spinner></mat-spinner>
-  </div>
+  <mat-menu #menu="matMenu">
+    <button (click)="onSignOut()" mat-menu-item>
+      <mat-icon>exit_to_app</mat-icon>
+      <span>Sign Out</span>
+    </button>
+  </mat-menu>
+
   <router-outlet></router-outlet>
 </div>

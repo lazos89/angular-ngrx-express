@@ -7,8 +7,6 @@ import { AppEffectsModules } from "./app-effects";
 import { metaReducers, appReducers } from "./reducer";
 import { EffectsModule } from "@ngrx/effects";
 
-import * as fromData from "./data/data.reducer";
-
 @NgModule({
   imports: [
     StoreModule.forRoot(appReducers, {
@@ -30,8 +28,7 @@ import * as fromData from "./data/data.reducer";
           maxAge: 25,
           logOnly: environment.production
         })
-      : [],
-    StoreModule.forFeature(fromData.dataFeatureKey, fromData.reducer)
+      : []
   ]
 })
 export class RootStoreModule {}

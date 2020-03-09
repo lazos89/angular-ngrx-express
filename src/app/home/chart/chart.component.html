@@ -1,0 +1,9 @@
+<div class="test">
+  <google-chart
+    [data]="chart"
+    style="position: relative; height:100px; width:100vw"
+    (chartReady)="ready($event)"
+    (chartError)="error($event)"
+    (chartSelect)="select($event)"
+  ></google-chart>
+</div>

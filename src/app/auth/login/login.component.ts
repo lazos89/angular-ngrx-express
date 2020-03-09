@@ -5,13 +5,14 @@ import {
   FormGroup,
   FormControl
 } from "@angular/forms";
-import { noop } from "rxjs";
+import { noop, combineLatest, Observable } from "rxjs";
 import { Router } from "@angular/router";
 import * as fromRoot from "@root-store/reducer";
-import { Store } from "@ngrx/store";
-import { tap } from "rxjs/operators";
-import { AuthActions } from "../store";
+import { Store, select } from "@ngrx/store";
+import { tap, map } from "rxjs/operators";
+import { AuthActions, authLoadingSelector } from "../store";
 import { LoginCredentials } from "../../core/models/user.model";
+import { dataLoadingSelector } from "../../root-store/data/data.selectors";
 interface Form {
   email: string;
   password: string;
@@ -23,6 +24,9 @@ interface Form {
 })
 export class LoginComponent implements OnInit {
   form: FormGroupTyped<Form>;
+  isLoading$: Observable<boolean>;
+  authLoading$: Observable<boolean>;
+  dataLoading$: Observable<boolean>;
   constructor(
     private fb: FormBuilder,
     private store$: Store<fromRoot.AppState>
@@ -31,6 +35,18 @@ export class LoginComponent implements OnInit {
       email: ["test@test.com", [Validators.required]],
       password: ["test", [Validators.required]]
     }) as FormGroupTyped<Form>;
+    this.authLoading$ = this.store$.pipe(select(authLoadingSelector));
+    this.dataLoading$ = this.store$.pipe(select(dataLoadingSelector));
+
+    this.isLoading$ = combineLatest(
+      this.authLoading$,
+      this.dataLoading$,
+      (login, data) => login || data
+    );
+    // .subscribe(loading => {
+    //   console.log(this.isLoading);
+    //   return (this.isLoading = loading);
+    // });
   }
   ngOnInit(): void {}
   login() {

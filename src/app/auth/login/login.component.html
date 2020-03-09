@@ -24,10 +24,19 @@
         mat-raised-button
         color="primary"
         (click)="login()"
-        [disabled]="!form.valid"
+        [disabled]="!form.valid || (isLoading$ | async)"
       >
         Login
+        <mat-icon *ngIf="isLoading$ | async"
+          ><mat-spinner color="warn" diameter="20"> </mat-spinner
+        ></mat-icon>
       </button>
     </form>
+    <div *ngIf="authLoading$ | async">
+      Loggin in
+    </div>
+    <div *ngIf="dataLoading$ | async">
+      Downloading Data
+    </div>
   </mat-card-content>
 </mat-card>
