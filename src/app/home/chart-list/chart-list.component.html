@@ -1,4 +1,18 @@
+<button
+  mat-raised-button
+  color="primaloadry"
+  (click)="load()"
+  [disabled]="dataLoading$ | async"
+>
+  Reload data
+  <mat-icon *ngIf="dataLoading$ | async"
+    ><mat-spinner color="warn" diameter="20"> </mat-spinner
+  ></mat-icon>
+</button>
+<div *ngIf="dataLoading$ | async">
+  Downloading...
+</div>
 <div *ngFor="let sensor of dataNames$ | async">
   <div style="height: 20px;"></div>
-  <app-chart [data]="(data$ | async)[sensor]"></app-chart>
+  <app-chart [sensor]="sensor"></app-chart>
 </div>

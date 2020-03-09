@@ -8,22 +8,40 @@ export interface State {
   loading: boolean;
   error: string;
   data: Data;
+  sensors: string[];
 }
 
 export const initialState: State = {
   loading: false,
   error: null,
-  data: null
+  data: null,
+  sensors: null
 };
 
 const dataReducer = createReducer(
   initialState,
-  on(DataActions.loadData, state => ({ ...state, loading: true, error: null })),
-  on(DataActions.loadDataSuccess, (state, action) => ({
+  on(DataActions.loadData, state => ({
     ...state,
-    data: action.data,
-    loading: false
+    loading: true,
+    error: null
+    // data: {}
   })),
+  on(DataActions.loadDataSuccess, (state, action) => {
+    // console.log(action.data);
+    return {
+      ...state,
+      data: {
+        ...Object.assign({}),
+        // ...action.data
+        ...Object.keys(action.data).reduce(
+          (acc, curr) => ({ ...acc, [curr]: action.data[curr] }),
+          {}
+        )
+      },
+      loading: false,
+      sensors: Array.from(Object.keys(action.data))
+    };
+  }),
   on(DataActions.loadDataFailure, state => ({
     ...state,
     loading: false,

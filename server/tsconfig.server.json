@@ -3,6 +3,7 @@
     "module": "commonjs",
     "lib": ["es2017"],
     "outDir": "./server/dist",
-    "rootDir": "./server/src"
+    "rootDir": "./server/src",
+    "resolveJsonModule": true
   }
 }

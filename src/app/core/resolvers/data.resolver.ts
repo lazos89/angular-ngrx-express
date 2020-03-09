@@ -18,7 +18,6 @@ export class DataResolver implements Resolve<any> {
     return this.store$.pipe(
       select(selectDataAll),
       tap(data => {
-        console.log(data);
         if (!data) {
           this.store$.dispatch(DataActions.loadData());
         }

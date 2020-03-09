@@ -6,9 +6,15 @@ import { HomeComponent } from "./home.component";
 import { ChartComponent } from "./chart/chart.component";
 import { ChartListComponent } from "./chart-list/chart-list.component";
 import { Ng2GoogleChartsModule } from "ng2-google-charts";
+import { MaterialModule } from "../material/material.module";
 
 @NgModule({
   declarations: [HomeComponent, ChartComponent, ChartListComponent],
-  imports: [CommonModule, HomeRoutingModule, Ng2GoogleChartsModule]
+  imports: [
+    CommonModule,
+    HomeRoutingModule,
+    Ng2GoogleChartsModule,
+    MaterialModule
+  ]
 })
 export class HomeModule {}
