@@ -14,5 +14,19 @@
 </div>
 <div *ngFor="let sensor of dataNames$ | async">
   <div style="height: 20px;"></div>
-  <app-chart [sensor]="sensor"></app-chart>
+
+  <mat-card>
+    <!-- <app-info-summary
+      [minMaxAverage]="minMaxAverage"
+      [lastValues]="lastValues"
+      [unit]="sensors.unit"
+      [name]="name"
+    ></app-info-summary> -->
+
+    <app-info-summary [sensor]="sensor"></app-info-summary>
+
+    <mat-card-content>
+      <app-chart [sensor]="sensor"></app-chart>
+    </mat-card-content>
+  </mat-card>
 </div>

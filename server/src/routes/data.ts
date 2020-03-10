@@ -19,5 +19,5 @@ export function getData(req: Request, res: Response) {
       console.log("sensor 3");
       res.status(200).json(sensor3);
     }
-  }, 3000);
+  }, 500);
 }

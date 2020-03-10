@@ -8,14 +8,12 @@ export interface State {
   loading: boolean;
   error: string;
   data: Data;
-  sensors: string[];
 }
 
 export const initialState: State = {
   loading: false,
   error: null,
-  data: null,
-  sensors: null
+  data: null
 };
 
 const dataReducer = createReducer(
@@ -24,24 +22,18 @@ const dataReducer = createReducer(
     ...state,
     loading: true,
     error: null
-    // data: {}
   })),
-  on(DataActions.loadDataSuccess, (state, action) => {
-    // console.log(action.data);
-    return {
-      ...state,
-      data: {
-        ...Object.assign({}),
-        // ...action.data
-        ...Object.keys(action.data).reduce(
-          (acc, curr) => ({ ...acc, [curr]: action.data[curr] }),
-          {}
-        )
-      },
-      loading: false,
-      sensors: Array.from(Object.keys(action.data))
-    };
-  }),
+  on(DataActions.loadDataSuccess, (state, action) => ({
+    ...state,
+    data: {
+      ...Object.assign({}),
+      ...Object.keys(action.data).reduce(
+        (acc, curr) => ({ ...acc, [curr]: action.data[curr] }),
+        {}
+      )
+    },
+    loading: false
+  })),
   on(DataActions.loadDataFailure, state => ({
     ...state,
     loading: false,

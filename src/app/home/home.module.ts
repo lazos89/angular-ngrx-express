@@ -7,9 +7,11 @@ import { ChartComponent } from "./chart/chart.component";
 import { ChartListComponent } from "./chart-list/chart-list.component";
 import { Ng2GoogleChartsModule } from "ng2-google-charts";
 import { MaterialModule } from "../material/material.module";
+import { InfoSummaryComponent } from './info-summary/info-summary.component';
+import { SummaryBoxComponent } from './summary-box/summary-box.component';
 
 @NgModule({
-  declarations: [HomeComponent, ChartComponent, ChartListComponent],
+  declarations: [HomeComponent, ChartComponent, ChartListComponent, InfoSummaryComponent, SummaryBoxComponent],
   imports: [
     CommonModule,
     HomeRoutingModule,
