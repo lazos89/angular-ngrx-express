@@ -9,21 +9,22 @@
     fxFlex.lt-md="50%"
     iconName="clock"
     title="Latest"
-    icon="/assets/icons/clock.svg"
+    [date]="(summaryValues$ | async)?.last?.date | date"
+    [value]="(summaryValues$ | async)?.last?.value"
   ></app-summary-box>
-
   <app-summary-box
     fxFlex.lt-md="50%"
     iconName="up-arrow"
     title="Highest"
-    icon="/assets/icons/up-arrow.svg"
+    [date]="(summaryValues$ | async)?.max?.date | date"
+    [value]="(summaryValues$ | async)?.max?.value"
   ></app-summary-box>
-
   <app-summary-box
     fxFlex.lt-md="50%"
     iconName="down-arrow"
     title="Lowest"
-    icon="/assets/icons/down-arrow.svg"
+    [date]="(summaryValues$ | async)?.min?.date | date"
+    [value]="(summaryValues$ | async)?.min?.value"
   ></app-summary-box>
 
   <app-summary-box
@@ -31,6 +32,6 @@
     iconName="avg"
     title="Average"
     date=""
-    icon="/assets/icons/avg.svg"
+    [value]="(summaryValues$ | async)?.average?.value"
   ></app-summary-box>
 </div>

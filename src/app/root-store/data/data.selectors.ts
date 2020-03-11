@@ -24,10 +24,8 @@ export const selectDataTable = () =>
 
 export const selectSummaryData = () =>
   createSelector(selectDataAll, (data: Data, props: any) => {
-    console.log(data[props.sensor]);
     const values = data[props.sensor].map(data => data[1]).slice(1) as number[];
     const dates = data[props.sensor].map(data => data[0]).slice(1) as string[];
-    console.log(values);
 
     return {
       min: calcMin(values, dates),

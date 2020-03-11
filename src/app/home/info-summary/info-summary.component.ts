@@ -17,8 +17,8 @@ export class InfoSummaryComponent implements OnInit {
   constructor(private store$: Store<fromRoot.AppState>) {}
 
   ngOnInit(): void {
-    this.store$
-      .pipe(select(selectSummaryData(), { sensor: this.sensor }))
-      .subscribe(() => {});
+    this.summaryValues$ = this.store$.pipe(
+      select(selectSummaryData(), { sensor: this.sensor })
+    );
   }
 }
