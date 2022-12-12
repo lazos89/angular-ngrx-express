@@ -30,7 +30,7 @@
     "@ngrx/store": "^8.6.0",
     "@ngrx/store-devtools": "^8.6.0",
     "errorhandler": "^1.5.1",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "express-flash": "0.0.2",
     "ng2-google-charts": "^5.0.0",
     "rxjs": "~6.5.4",
